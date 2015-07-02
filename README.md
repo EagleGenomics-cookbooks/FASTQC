@@ -17,7 +17,7 @@ Requirements
 
 Notes
 =====
-The executables are all placed in /usr/local/bin so this needs to be in your path. 
+The file is unzip in /usr/local/FastQC so need to run from here. 
 
 Usage
 =====
