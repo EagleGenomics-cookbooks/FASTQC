@@ -19,6 +19,7 @@ end
 
 describe command('fastqc -version') do
   its(:exit_status) { should eq 0 }
+  its(:stdout) { should contain ENV['FASTQC_VERSION'] }
 end
 
 describe command 'fastqc --outdir=/tmp /tmp/test1.fastq' do
