@@ -24,4 +24,6 @@ execute "chmod 755 fastqc" do
   cwd "#{node['FASTQC']['install_dir']}/FastQC"
 end
 
-
+link "#{node['FASTQC']['bin_path']}/fastqc" do
+  to "#{node['FASTQC']['install_dir']}/FastQC/fastqc"
+end

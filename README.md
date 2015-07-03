@@ -1,5 +1,5 @@
-# FASTQC
-Chef recipe for FASTQC - FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines
+# FastQC
+Chef recipe for FastQC - FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines
 
 Description
 ===========
