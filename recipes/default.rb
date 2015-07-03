@@ -40,4 +40,12 @@ link "#{node['FastQC']['bin_path']}/fastqc" do
   to "#{node['FastQC']['install_dir']}/FastQC/fastqc"
 end
 
+cookbook_file 'test1.fastq' do
+  path '/tmp/test1.fastq'
+  action :create
+  owner 'root'
+  group 'root'
+  mode 0644
+end
+
 ##########################################################
