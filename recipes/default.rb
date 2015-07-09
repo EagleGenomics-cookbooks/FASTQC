@@ -44,7 +44,7 @@ execute "unzip #{Chef::Config[:file_cache_path]}/#{node['FastQC']['filename']} -
   not_if { ::File.exist?("#{node['FastQC']['install_dir']}/FastQC/fastqc") }
 end
 
-execute "chmod 755 fastqc" do
+execute 'chmod 755 fastqc' do
   cwd "#{node['FastQC']['install_dir']}/FastQC/"
 end
 
