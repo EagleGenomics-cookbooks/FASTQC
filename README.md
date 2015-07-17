@@ -25,7 +25,7 @@ The file is unzip in /usr/local/FastQC so need to run from here.
 
 Usage
 =====
-Simply include the recipe wherever you would like it installed, such as a run list (recipe[[CookbookName]]) or a cookbook (include_recipe '[CookbookName]')
+Simply include the recipe wherever you would like it installed, such as a run list (recipe[FastQC]) or a cookbook (include_recipe 'FastQC')
 
 ## Testing
 To test the recipe we use chef test kitchen
