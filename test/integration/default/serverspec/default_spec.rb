@@ -19,6 +19,7 @@ end
 
 describe command('fastqc -version') do
   its(:exit_status) { should eq 0 }
+  its(:stdout) { should contain ENV['FASTQC_VERSION'] }
 end
 
 describe command 'fastqc --outdir=/tmp /tmp/test1.fastq' do
@@ -30,7 +31,7 @@ describe command 'unzip /tmp/test1_fastqc.zip -d /tmp' do
   its(:exit_status) { should eq 0 }
 end
 
-describe file("/tmp/test1_fastqc/summary.txt") do
+describe file('/tmp/test1_fastqc/summary.txt') do
   it { should be_file }
   it { should contain 'PASS' }
 end

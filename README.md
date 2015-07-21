@@ -1,8 +1,12 @@
 # FastQC
-Chef recipe for FastQC - FastQC aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines
 
 Description
 ===========
+This Cookbook to installs FastQC.
+
+FastQC aims to provide a simple way to do some quality 
+control checks on raw sequence data coming from high throughput sequencing pipelines
+
 
 http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
@@ -21,7 +25,9 @@ The file is unzip in /usr/local/FastQC so need to run from here.
 
 Usage
 =====
+Simply include the recipe wherever you would like it installed, such as a run list (recipe[FastQC]) or a cookbook (include_recipe 'FastQC')
 
+## Testing
 To test the recipe we use chef test kitchen
 
 kitchen converge default-centos65 | tee kitchen.log
@@ -36,7 +42,9 @@ License and Authors
 ===================
 
 * Authors:: Bart Ailey (<chef@eaglegenomics.com>)
-    
+* Authors:: Dan Barrel (<chef@eaglegenomics.com>)
+* Authors:: Nick James (<chef@eaglegenomics.com>)
+
 Copyright:: 2015, Eagle Genomics Ltd
     
 Licensed under the Apache License, Version 2.0 (the "License");
