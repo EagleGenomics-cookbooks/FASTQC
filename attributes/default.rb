@@ -1,8 +1,8 @@
 default['FastQC']['version'] = 'v0.11.3'
 default['FastQC']['filename'] = 'fastqc_' + default['FastQC']['version'] + '.zip'
-default['FastQC']['url'] = 'http://www.bioinformatics.babraham.ac.uk/projects/fastqc/' + default['FastQC']['filename']     
+default['FastQC']['url'] = 'http://www.bioinformatics.babraham.ac.uk/projects/fastqc/' + default['FastQC']['filename'] 
 default['FastQC']['install_dir'] = '/usr/local/'
-default['FastQC']['bin_path'] = '/usr/local/bin' 
+default['FastQC']['bin_path'] = '/usr/local/bin'
 default['FastQC']['dirname'] = "#{default['FastQC']['install_dir']}/FastQC_#{node['FastQC']['version']}"
 default['java']['install_flavor'] = 'oracle'
 default['java']['jdk_version'] = 6
