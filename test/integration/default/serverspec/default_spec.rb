@@ -22,15 +22,18 @@ describe command('fastqc -version') do
   its(:stdout) { should contain ENV['FASTQC_VERSION'] }
 end
 
+# runs fastqc on some small test data and creates output zip file
 describe command 'fastqc --outdir=/tmp /tmp/test1.fastq' do
   its(:exit_status) { should eq 0 }
   its(:stdout) { should contain('Analysis complete for test1.fastq') }
 end
 
+# unzips the output file above
 describe command 'unzip /tmp/test1_fastqc.zip -d /tmp' do
   its(:exit_status) { should eq 0 }
 end
 
+# test the output of the fastqc command above matches the output we expect
 describe file('/tmp/test1_fastqc/summary.txt') do
   it { should be_file }
   it { should contain 'PASS' }
