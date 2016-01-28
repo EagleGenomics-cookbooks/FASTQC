@@ -1,4 +1,4 @@
-default['FastQC']['version'] = 'v0.11.3'
+default['FastQC']['version'] = 'v0.11.4'
 default['FastQC']['filename'] = 'fastqc_' + default['FastQC']['version'] + '.zip'
 default['FastQC']['url'] = 'http://www.bioinformatics.babraham.ac.uk/projects/fastqc/' + default['FastQC']['filename']
 default['FastQC']['install_dir'] = '/usr/local/'
