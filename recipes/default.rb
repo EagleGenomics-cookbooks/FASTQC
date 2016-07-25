@@ -24,7 +24,7 @@ cookbook_file 'test1.fastq' do
   action :create
   owner 'root'
   group 'root'
-  mode 0644
+  mode 0o644
 end
 
 ##########################################################
