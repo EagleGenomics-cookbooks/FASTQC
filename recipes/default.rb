@@ -5,6 +5,7 @@
 # Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
 ##########################################################
 
+include_recipe 'apt'
 include_recipe 'build-essential'
 include_recipe 'java'
 
@@ -44,8 +45,8 @@ execute "unzip #{Chef::Config[:file_cache_path]}/#{node['FastQC']['filename']} -
   not_if { ::File.exist?("#{node['FastQC']['install_dir']}/FastQC/fastqc") }
 end
 
-execute 'chmod 755 fastqc' do
-  cwd "#{node['FastQC']['install_dir']}/FastQC/"
+file "#{node['FastQC']['install_dir']}/FastQC/fastqc" do
+  mode '755'
 end
 
 link "#{node['FastQC']['bin_path']}/fastqc" do
