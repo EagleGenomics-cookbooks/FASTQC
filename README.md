@@ -1,4 +1,5 @@
 # FastQC
+https://travis-ci.org/EagleGenomics-cookbooks/FastQC.svg?branch=master
 
 Description
 ===========
