@@ -1,34 +1,31 @@
 sudo: required
 dist: trusty
-
-# install the pre-release chef-dk.  Use chef-stable-trusty to install the stable release
 addons:
   apt:
     sources:
-      - chef-stable-trusty
+    - chef-stable-trusty
     packages:
-      - chefdk
-
-# Don't `bundle install` which takes about 1.5 mins
+    - chefdk
 install: echo "skip bundle install"
-
 branches:
   only:
-    - master
-
+  - master
 services: docker
-
 env:
   matrix:
   - INSTANCE=default-centos-65
-
 before_script:
-  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/cookstyle --version
-  - /opt/chefdk/embedded/bin/foodcritic --version
-  - /opt/chefdk/bin/chef exec rake
-  - chef gem install kitchen-docker
-  
-script: KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+- sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
+  -N DOCKER )
+- eval "$(/opt/chefdk/bin/chef shell-init bash)"
+- "/opt/chefdk/embedded/bin/chef --version"
+- "/opt/chefdk/embedded/bin/cookstyle --version"
+- "/opt/chefdk/embedded/bin/foodcritic --version"
+- "/opt/chefdk/bin/chef exec rake"
+- chef gem install kitchen-docker
+script: KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify
+  ${INSTANCE}
+notifications:
+  slack:
+    rooms:
+      secure: KZW2IXMXSPTCkIqcuRH3dEllcsAg88+fXeYsWjyKkfaOOk94mCYArcpHxPoMciE6tmOE+5aywLwnyoS1LedMgkdbHnCA4XmPfoofcPcKTC7vqVzygaD3B6lFvIebUXGUCdnPzsqzwAV+eKtrowuvNqOVGNzpaz811z+Yn9p+xQ7ijSHwXtBspdKS8kHWJv0CqPQMm88+hoIsRlDHHhVgxswTvqzipGNzO2AOgHVDAYuFU1fEw6NhhfNSNplhvm2OhZ2iARvhMXg2NaNIx0XHiV3axi++SDi5Oss5KmYBCKQPBuUqmrbnPjC3OrbAJGu88zqQDaQAU/bDGtQihfFG6gdpDM+7Vw+2mHShwRWG68aE6yVuiVK+IwqYHykNAqKDpvgGVr4QFZt8FDPX/FGAFl88Qi8SNPtkiQ8wqKVb6oGM54gxhHHAAfotHUZn4T+Eo4Flp3YlhfIZlwGGYXSw4ve+96WGYshNY+VPIulV9z+uEiqdstf/dwjgbyCiHPSH7EDKkchuz3l/XvsZKhH53G/5oDIGsfMDigJNzu0UJj/osdhrmwXzZpw2NGXhFe0ce4pdcqW50/ijJMsdWV9LohUYBXZ3iuyIkIdwbM/vThDpD5Q9cuc+FxOzftnAWbGoSsAjWU122RSaeQC2+T1aXOgCiqmralGsHF+YXZTqUMk=
