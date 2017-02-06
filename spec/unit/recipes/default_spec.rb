@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: FASTQC
+# Cookbook Name:: FastQC
 # Spec:: default
 #
 # Copyright (c) 2016 Eagle Genomics Ltd, Apache License, Version 2.0.
 
 require 'spec_helper'
 
-describe 'FASTQC::default' do
+describe 'FastQC::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
