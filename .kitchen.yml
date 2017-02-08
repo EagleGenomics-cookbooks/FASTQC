@@ -8,6 +8,8 @@ provisioner:
 
 platforms:
   - name: centos-6.5
+    driver_config:
+      instance_name: fastqc_dep
 
 suites:
   - name: default
