@@ -31,8 +31,8 @@ script: KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen 
   ${INSTANCE} ${INSTANCE}
 after_success:
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
-- docker commit fastqc_dep eaglegenomics/fastqc_dep:latest
-- docker push eaglegenomics/fastqc_dep:latest  >/dev/null
+- docker commit fastqc_dep eaglegenomics/fastqc_dep:auto-build
+- docker push eaglegenomics/fastqc_dep:latest
 notifications:
   slack:
     rooms:
