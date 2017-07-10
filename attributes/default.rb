@@ -5,5 +5,5 @@ default['FastQC']['install_dir'] = '/usr/local/'
 default['FastQC']['bin_path'] = '/usr/local/bin'
 default['FastQC']['dirname'] = "#{default['FastQC']['install_dir']}/FastQC_#{node['FastQC']['version']}"
 default['java']['install_flavor'] = 'oracle'
-default['java']['jdk_version'] = 6
+default['java']['jdk_version'] = 8
 default['java']['oracle']['accept_oracle_download_terms'] = true
