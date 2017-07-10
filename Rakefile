@@ -1,67 +1,29 @@
-#!/usr/bin/env rake
+require 'cookstyle'
+require 'rubocop/rake_task'
+require 'foodcritic'
+require 'rspec/core/rake_task'
 
-# Style tests. cookstyle (rubocop) and Foodcritic
-namespace :style do
-  begin
-    require 'cookstyle'
-    require 'rubocop/rake_task'
-
-    desc 'Run Ruby style checks'
-    RuboCop::RakeTask.new(:ruby)
-  rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting style:ruby" unless ENV['CI']
-  end
-
-  begin
-    require 'foodcritic'
-
-    desc 'Run Chef style checks'
-    FoodCritic::Rake::LintTask.new(:chef) do |t|
-      t.options = {
-        fail_tags: ['any'],
-        progress: true,
-      }
-    end
-  rescue LoadError
-    puts ">>> Gem load error: #{e}, omitting style:chef" unless ENV['CI']
-  end
+RuboCop::RakeTask.new do |task|
+  task.options << '--display-cop-names'
 end
+FoodCritic::Rake::LintTask.new(:foodcritic)
+RSpec::Core::RakeTask.new(:rspec)
 
-desc 'Run all style checks'
-task style: ['style:chef', 'style:ruby']
-
-# ChefSpec
 begin
-  require 'rspec/core/rake_task'
+  require 'kitchen/rake_tasks'
+  Kitchen::RakeTasks.new
 
-  desc 'Run ChefSpec examples'
-  RSpec::Core::RakeTask.new(:spec)
-rescue LoadError => e
-  puts ">>> Gem load error: #{e}, omitting spec" unless ENV['CI']
+  desc 'Alias for kitchen:all'
+  task all: 'kitchen:all'
+rescue LoadError
+  puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
 end
 
-# Integration tests. Kitchen.ci
-namespace :integration do
-  begin
-    require 'kitchen/rake_tasks'
+desc 'Run all pre-convergence test: rubocop, foodcritic, rspec'
+task tests: [:rubocop, :foodcritic, :rspec]
 
-    desc 'Run kitchen integration tests'
-    Kitchen::RakeTasks.new
-  rescue StandardError => e
-    puts ">>> Kitchen error: #{e}, omitting #{task.name}" unless ENV['CI']
-  end
-end
+desc 'Run kitchen: includes destroy, converge, verify - default: all'
+task kitchen: [:all]
 
-namespace :supermarket do
-  begin
-    require 'stove/rake_task'
-
-    desc 'Publish cookbook to Supermarket with Stove'
-    Stove::RakeTask.new
-  rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV['CI']
-  end
-end
-
-# Default
-task default: %w(style spec)
+desc 'Run both tests, kitchen converge and verify'
+task default: [:tests, :kitchen]
