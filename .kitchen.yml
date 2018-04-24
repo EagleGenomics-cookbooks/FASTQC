@@ -1,18 +1,14 @@
----
 driver:
   name: docker
   use_sudo: false
-
 provisioner:
   name: chef_zero
-
 platforms:
-  - name: centos-6.5
-    driver_config:
-      instance_name: fastqc_dep
-
+- name: centos-6.5
+  driver_config:
+    instance_name: fastqc_dep
 suites:
-  - name: default
-    run_list:
-      - recipe[FastQC::default]
-    attributes:
+- name: default
+  run_list:
+  - recipe[FastQC::default]
+  attributes:
