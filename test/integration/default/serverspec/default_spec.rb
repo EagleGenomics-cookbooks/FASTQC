@@ -1,14 +1,14 @@
-require 'serverspec'
-require_relative './spec_helper'
+# require 'serverspec'
+# require_relative './spec_helper'
 
 # Required by serverspec
-set :backend, :exec
+# set :backend, :exec
 
-describe file("#{ENV['FASTQC_INSTALL_DIR']}/FastQC") do
+describe file('/usr/local/FastQC') do
   it { should be_directory }
 end
 
-describe file("#{ENV['FASTQC_INSTALL_DIR']}/FastQC/fastqc") do
+describe file('/usr/local/FastQC/fastqc') do
   it { should be_file }
   it { should be_executable }
 end
@@ -19,13 +19,13 @@ end
 
 describe command('fastqc -version') do
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should contain ENV['FASTQC_VERSION'] }
+  its(:stdout) { should match 'v0.11.5' }
 end
 
 # runs fastqc on some small test data and creates output zip file
 describe command 'fastqc --outdir=/tmp /tmp/test1.fastq' do
   its(:exit_status) { should eq 0 }
-  its(:stdout) { should contain('Analysis complete for test1.fastq') }
+  its(:stdout) { should match 'Analysis complete for test1.fastq' }
 end
 
 # unzips the output file above
@@ -36,7 +36,7 @@ end
 # test the output of the fastqc command above matches the output we expect
 describe file('/tmp/test1_fastqc/summary.txt') do
   it { should be_file }
-  it { should contain 'PASS' }
+  its('content') { should match 'PASS' }
 end
 
 describe command('rm -rf /tmp/test1_fastqc /tmp/test1_fastqc.html /tmp/test1_fastqc.zip') do
