@@ -1,13 +1,14 @@
 name 'FastQC'
-maintainer 'Eagle Genomics'
+maintainer 'Eagle Genomics Ltd'
 maintainer_email 'chef@eaglegenomics.com'
-license 'Apache v2.0'
+license 'Apache-2.0'
 description 'Installs/Configures FastQC'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.0.6'
-
+version '1.1.0'
+chef_version '>= 14.10'
+supports 'ubuntu', '= 18.04'
 source_url 'https://github.com/EagleGenomics-cookbooks/FastQC'
 issues_url 'https://github.com/EagleGenomics-cookbooks/FastQC/issues'
-
 depends 'magic_shell'
 depends 'java'
+depends 'apt'
