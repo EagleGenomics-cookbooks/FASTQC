@@ -10,5 +10,4 @@ source_url 'https://github.com/EagleGenomics-cookbooks/FastQC'
 issues_url 'https://github.com/EagleGenomics-cookbooks/FastQC/issues'
 
 depends 'magic_shell'
-depends 'apt'
 depends 'java'
