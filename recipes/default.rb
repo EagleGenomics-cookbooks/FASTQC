@@ -6,7 +6,10 @@
 ##########################################################
 
 include_recipe 'apt'
-include_recipe 'build-essential'
+build_essential 'install essential' do
+  action :install
+end
+
 include_recipe 'java'
 
 ##########################################################

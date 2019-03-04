@@ -9,7 +9,6 @@ version '1.0.6'
 source_url 'https://github.com/EagleGenomics-cookbooks/FastQC'
 issues_url 'https://github.com/EagleGenomics-cookbooks/FastQC/issues'
 
-depends 'build-essential'
 depends 'magic_shell'
 depends 'apt'
 depends 'java'
