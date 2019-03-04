@@ -1,14 +1,22 @@
+---
 driver:
   name: docker
-  use_sudo: false
+
 provisioner:
   name: chef_zero
+  product_version: 14.10
+  
+verifier:
+  name: inspec
+
 platforms:
-- name: centos-6.5
-  driver_config:
-    instance_name: fastqc_dep
+  - name: ubuntu-18.04
+
 suites:
-- name: default
-  run_list:
-  - recipe[FastQC::default]
-  attributes:
+  - name: default
+    run_list:
+      - recipe[FastQC::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
