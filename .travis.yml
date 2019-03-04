@@ -15,6 +15,7 @@ before_script:
 - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
   -N DOCKER )
 - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+- chef gem install kitchen-docker
 - /opt/chefdk/bin/chef exec rake tests
 
 script:
