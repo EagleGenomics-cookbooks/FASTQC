@@ -1,9 +1,3 @@
-# require 'serverspec'
-# require_relative './spec_helper'
-
-# Required by serverspec
-# set :backend, :exec
-
 describe file('/usr/local/FastQC') do
   it { should be_directory }
 end
