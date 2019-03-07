@@ -11,6 +11,10 @@ branches:
   only:
   - master
 
+env:
+  matrix:
+  - INSTANCE=default-ubuntu-1804
+
 before_script:
 - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables
   -N DOCKER )
@@ -23,6 +27,3 @@ script:
 
 after_script:
 - /opt/chefdk/embedded/bin/kitchen destroy ${INSTANCE}
-
-script: KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify
-  ${INSTANCE} ${INSTANCE}
